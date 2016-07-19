@@ -1,15 +1,3 @@
-import React from 'react';
-// render method, allows us to render out to html
-import { render } from 'react-dom';
-// import css
-import css from './styles/style.styl'
-// import components
-import Main from './components/Main';
-import Single from './components/Single';
-import PhotoGrid from './components/PhotoGrid';
-// import react-router dependencies
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-
 /* NOTES
 -want react-router to pass in Photo-Grid.js or Single as this.props.children to Main Component
 -render router out to the page, then it dictates which components to render
@@ -23,15 +11,38 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 				- otherwise use nested route :postId, which uses Single component
 		-so we're passing either Main-PhotoGrid or Main-Single
 		-Photogrid and Single are children, remember that we passed in {React.cloneElement} w/ this.props in the MainComponent to establish that
+	-VID 8: need to update router so that it knows about our store
+-PROVIDER: allows us to bind redux w/ react
+	-<Provider> tag exposes our store to our app (accessed via the store prop on the tag)
 */
 
+import React from 'react';
+// render method, allows us to render out to html
+import { render } from 'react-dom';
+// import css
+import css from './styles/style.styl'
+// import components
+import Main from './components/Main';
+import Single from './components/Single';
+import PhotoGrid from './components/PhotoGrid';
+// import react-router dependencies
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+// binding that allows us to use redux w/ react
+import { Provider } from 'react-redux';
+// 'store' is a default export whereas 'history' is in curly brackets because it's a named export
+// 'history' is the enhanced history, which first passes users new url location thru the redux store and then onto React Router to update the component tree
+import store, { history } from './store';
+
+
 const router = (
-	<Router history={browserHistory}>
-		<Route path="/" component={Main}>
-			<IndexRoute component={PhotoGrid}></IndexRoute>
-			<Route path="/view/:postId" component={Single}></Route>
-		</Route>
-	</Router>
+	<Provider store={store}>
+		<Router history={history}>
+			<Route path="/" component={Main}>
+				<IndexRoute component={PhotoGrid}></IndexRoute>
+				<Route path="/view/:postId" component={Single}></Route>
+			</Route>
+		</Router>
+	</Provider>
 )
 
 render(router, document.getElementById('root'));
