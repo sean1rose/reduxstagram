@@ -1,4 +1,7 @@
 // rccs -> react stateful component
+// Presentational component
+
+
 import React from 'react';
 import { Link } from 'react-router';
 // using Link from react-router so that when click on Reduxstagram h1 text -> brings us to main page
