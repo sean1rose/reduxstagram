@@ -14,9 +14,22 @@
 // reducer function for a user POST piece of data
 // use ES6 default paramter to set state as empty array (state is not going to be anything upon initial load)
 function posts(state = [], action){
-	console.log('The post will change');
-	console.log(state, action);
-	return state;
+	switch(action.type){
+		case 'INCREMENT_LIKES':
+		// return the updated state
+		console.log('increment likes');
+		const i = action.index;
+		return [
+			// instead of using array.concat to return a new array, using ES6 spread (similar to using Object.assign)
+			// takes in state, takes everything before and after, and updates the 1 post that we actually want
+			...state.slice(0,i), 														// take everything up (before) to the one we are updating
+			{...state[i], likes: state[i].likes + 1}, 			// object spread
+			...state.slice(i + 1), 													// after the one we are updating
+		]
+		default:
+			// if not acting on it, just return default state w/ no changes
+			return state;
+	}
 }
 
 export default posts;

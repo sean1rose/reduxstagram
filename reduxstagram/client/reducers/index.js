@@ -7,6 +7,7 @@
 - everytime an action is dispatched -> EVERY single reducer is run
 		- whether you choose to act on that action and change the state is up to what you do in the reducer
 				- will use the action label and a switch statement to determine whether to act upon it 
+- reducer takes in pure functions (no state mutation ie don't modify the state, just make a copy it will return a new state)
 */
 
 import { combineReducers } from 'redux';

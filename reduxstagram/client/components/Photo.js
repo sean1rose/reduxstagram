@@ -1,6 +1,7 @@
 /*
 - this is a component used by PhotoGrid
 - data is received as props
+- Like Button onClick function -> use BIND when the onclick function needs to be passed an argument
 */
 
 import React from 'react';
@@ -25,7 +26,7 @@ const Photo = React.createClass({
 				<figcaption>
 					<p>{post.caption}</p>
 					<div className="control-buttons">
-						<button className="likes">&hearts; {post.likes}</button>
+						<button onClick={this.props.increment.bind(null, i)} className="likes">&hearts; {post.likes}</button>
 						<Link className="button" to={`/view/${post.code}`}>
 							<span className="comment-count">
 								<span className="speech-bubble"></span>
