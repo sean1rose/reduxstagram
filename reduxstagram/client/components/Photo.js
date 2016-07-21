@@ -23,6 +23,7 @@ const Photo = React.createClass({
           </CSSTransitionGroup>
 
       	</div>
+      	
 				<figcaption>
 					<p>{post.caption}</p>
 					<div className="control-buttons">
