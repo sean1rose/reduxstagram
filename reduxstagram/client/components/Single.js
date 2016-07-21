@@ -2,6 +2,7 @@
 -rccs -> react stateful component
 -VID 13
 -Single Post === (Photo Component) + (Comments Component)
+- <Comments {...this.props}></Comments> --> passes in the props to comments component
 */
 
 
@@ -22,7 +23,7 @@ const Single = React.createClass({
     return (
       <div className="single-photo">
       	<Photo i={i} post={post} {...this.props} />
-      	<Comments postComments={postComments} ></Comments>
+      	<Comments postComments={postComments} {...this.props} ></Comments>
       </div>
     )
   },
