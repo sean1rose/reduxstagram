@@ -1,4 +1,4 @@
-/* NOTES
+/* 		***THIS FILE IS OUR POINT OF ENTRY / MAIN APP FILE***
 -want react-router to pass in Photo-Grid.js or Single as this.props.children to Main Component
 -render router out to the page, then it dictates which components to render
 -REACT-ROUTER -> instead of rendering out Main then, we need to build out a router component
@@ -33,6 +33,14 @@ import { Provider } from 'react-redux';
 // 'store' is a default export whereas 'history' is in curly brackets because it's a named export
 // 'history' is the enhanced history, which first passes users new url location thru the redux store and then onto React Router to update the component tree
 import store, { history } from './store';
+
+/* Sentry setup
+// import Raven from 'raven-js';
+// import { sentry_url } from './data/config';
+// set up sentry to catch user error-info
+// Raven.config(sentry_url).install();
+// console.log(window.doesNotExist.nope);
+*/
 
 
 const router = (

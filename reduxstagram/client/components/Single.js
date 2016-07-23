@@ -18,7 +18,7 @@ const Single = React.createClass({
   	const i = this.props.posts.findIndex((post) => post.code === postId);
   	// get us the post
   	const post = this.props.posts[i];
-  	// get the specific photo's comments
+  	// get the specific photo's comments, need to fall back to empty array, cuz eventually running map() on postComments
   	const postComments = this.props.comments[postId] || [];
     return (
       <div className="single-photo">
