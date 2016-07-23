@@ -34,14 +34,6 @@ import { Provider } from 'react-redux';
 // 'history' is the enhanced history, which first passes users new url location thru the redux store and then onto React Router to update the component tree
 import store, { history } from './store';
 
-/* Sentry setup
-// import Raven from 'raven-js';
-// import { sentry_url } from './data/config';
-// set up sentry to catch user error-info
-// Raven.config(sentry_url).install();
-// console.log(window.doesNotExist.nope);
-*/
-
 
 const router = (
 	<Provider store={store}>
@@ -56,3 +48,19 @@ const router = (
 
 render(router, document.getElementById('root'));
 
+/* Sentry setup
+import Raven from 'raven-js';
+import { sentry_url, logException } from './data/config';
+//set up sentry to catch user error-info
+Raven.config(sentry_url, {
+	tags: {
+		git_commit: 'asdfas9d08f',
+		userLevel: 'editor'
+	}
+}).install();
+logException(new Error('d/l failed!'), {
+	email: 'sean1rose@gmail.com'
+})
+console.log(window.user.doesNotExist);
+console.log(store.doesNot.nope())
+*/
