@@ -24,4 +24,14 @@ const store = createStore(rootReducer, defaultState);
 // this is going to be used as the history prop on the <Router> tag in reduxstagram.js
 export const history = syncHistoryWithStore(browserHistory, store);
 
+// So can hot-reload reducer files (accept hot reload and re-require the reducer)...
+if(module.hot){
+	module.hot.accept('./reducers/',() => {
+		// re-require and swap out module using commonjs require cuz can't call es6 import from w/in a function
+		const nextRootReducer = require('./reducers/index').default;
+		store.replaceReducer(nextRootReducer);
+	})
+}
+
+
 export default store;

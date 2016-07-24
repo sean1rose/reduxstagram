@@ -17,7 +17,6 @@ function posts(state = [], action){
 	switch(action.type){
 		case 'INCREMENT_LIKES':
 		// return the updated state
-		console.log('increment likes');
 		const i = action.index;
 		return [
 			// instead of using array.concat to return a new array, using ES6 spread (similar to using Object.assign)
