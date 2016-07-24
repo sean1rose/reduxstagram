@@ -16,8 +16,17 @@ const defaultState = {
 	comments
 };
 
+// enhance store to integrate redux devtool chrome extension into our app
+const enhancers = compose(
+	window.devToolsExtension ? window.devToolsExtension() : f => f
+);
+// Sweep button: finalizes whatever changes in state you altered w/ devtool
+// Commit: adds whatever changes you altered as new default state
+// Revert: deletes whatever changes have been made since last commit
+// Reset: remove all actions and bring back store to initial state (including anything committed)
+
 // create the store
-const store = createStore(rootReducer, defaultState);
+const store = createStore(rootReducer, defaultState, enhancers);
 
 // syncHistorWithStore (https://github.com/reactjs/react-router-redux)
 // 'history' is the enhanced history, which first passes users new url location thru the redux store and then onto React Router to update the component tree
